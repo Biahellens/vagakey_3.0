@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "vagakey-app",
+    "slug": "vagakey-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "SUA_CHAVE_DE_API_DO_Maps_IOS"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "O aplicativo NOAH precisa de acesso à sua localização para mostrar rotas seguras e informações de alerta."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "SUA_CHAVE_DE_API_DO_Maps_ANDROID"
+        }
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "config": {
+        "googleMaps": {
+          "apiKey": "SUA_CHAVE_DE_API_DO_Maps_WEB"
+        }
+      },
+      "bundler": "metro"
+    },
+    "scheme": "vagakeyapp",
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
