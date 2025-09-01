@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 
@@ -15,6 +15,7 @@ export default function VehicleScreen({ navigation }: Props) {
   const [plate, setPlate] = useState("");
   const [model, setModel] = useState("");
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [selectedVehicle, setSelectedVehicle] = useState<string | null>(null);
 
   const addVehicle = () => {
     if (!plate || !model) {
@@ -35,55 +36,128 @@ export default function VehicleScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Meus Veículos</Text>
+      <Text style={styles.text1}>Olá Visitante</Text>
+      <Text style={styles.title}>
+        Estacione de forma <Text style={{ fontWeight: "bold" }}>RÁPIDA</Text> e{" "}
+        <Text style={{ fontWeight: "bold" }}>FÁCIL</Text>
+      </Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Placa (ex: ABC-1234)"
-        value={plate}
-        onChangeText={setPlate}
-      />
+      <View style={styles.cardContainer}>
+        <TouchableOpacity
+          style={[
+            styles.buttonOutline,
+            selectedVehicle === "carro" && styles.selectedCard,
+          ]}
+          onPress={() => setSelectedVehicle("carro")}
+        >
+          {selectedVehicle === "carro" ? (<Image source={require("../assets/car_icone_white.png")} style={styles.image} />
+          ) : (<Image source={require("../assets/car_icone.png")} style={styles.image} />
+          )}          <Text style={[styles.buttonOutlineText, selectedVehicle === "carro" && styles.selectedText,
+          ]}>Carro</Text>
+        </TouchableOpacity>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Modelo (ex: Corolla, Civic)"
-        value={model}
-        onChangeText={setModel}
-      />
+        <TouchableOpacity
+          style={[
+            styles.buttonOutline,
+            selectedVehicle === "moto" && styles.selectedCard,
+          ]}
+          onPress={() => setSelectedVehicle("moto")}
+        >
+          {selectedVehicle === "moto" ? (<Image source={require("../assets/moto_icone_white.png")} style={styles.image} />
+          ) : (<Image source={require("../assets/moto_icone.png")} style={styles.image} />
+          )}          <Text style={[styles.buttonOutlineText, selectedVehicle === "moto" && styles.selectedText,
+          ]}>Moto</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={addVehicle}>
-        <Text style={styles.buttonText}>Adicionar Veículo</Text>
-      </TouchableOpacity>
-
-      <FlatList
-        data={vehicles}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.vehicleCard}>
-            <Text style={styles.vehicleText}>{item.model} - {item.plate}</Text>
-          </View>
-        )}
-        ListEmptyComponent={<Text style={{ marginTop: 20 }}>Nenhum veículo cadastrado.</Text>}
-      />
-
-      <TouchableOpacity
-        style={styles.buttonOutline}
-        onPress={() => navigation.navigate("Home")}
-      >
-        <Text style={styles.buttonOutlineText}>⬅ Voltar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.buttonOutline,
+            selectedVehicle === "bike" && styles.selectedCard,
+          ]}
+          onPress={() => setSelectedVehicle("bike")}
+        >
+          <Image source={require("../assets/bicicleta_icone.png")} style={styles.image} />
+          <Text style={[styles.buttonOutlineText, selectedVehicle === "bike" && styles.selectedText,
+          ]}>Bicicleta</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.carSelected}>
+        <ImageBackground
+          source={require("../assets/car_selected.png")}
+          style={styles.carImage}
+          imageStyle={{ borderRadius: 12 }} // se quiser arredondar a imagem
+        >
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Selecionar</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 120 },
-  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
-  input: { height: 50, borderColor: "#ccc", borderWidth: 1, borderRadius: 10, paddingHorizontal: 15, marginBottom: 10 },
-  button: { backgroundColor: "#28a745", padding: 15, borderRadius: 10, alignItems: "center", marginBottom: 20 },
-  buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
-  vehicleCard: { backgroundColor: "#f8f9fa", padding: 15, borderRadius: 8, marginBottom: 10 },
-  vehicleText: { fontSize: 16 },
-  buttonOutline: { borderWidth: 2, borderColor: "#007bff", padding: 15, borderRadius: 10, alignItems: "center", marginTop: 20 },
-  buttonOutlineText: { color: "#007bff", fontSize: 16, fontWeight: "bold" },
+  container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 40 },
+  title: { fontSize: 26, fontWeight: "400", marginBottom: 20 },
+  text1: { fontSize: 16, fontWeight: "200" },
+
+  cardContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+
+  buttonOutline: {
+    width: 110,
+    height: 130,
+    padding: 16,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#D9D9D9",
+  },
+
+  selectedCard: {
+    backgroundColor: "#03385c",
+  },
+  selectedText: {
+    color: "#ffffff",
+  },
+
+  buttonOutlineText: { color: "#5D5A6D", fontSize: 18, fontWeight: "400" },
+
+  image: { width: 50, height: 50 },
+
+  carSelected: {
+    position: "relative", // garante que o botão fique relativo à imagem
+    alignItems: "center",
+    width: "100%",
+    height: 200,
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 80,
+  },
+  carImage: {
+    width: 214,
+    height: 344,
+    //resizeMode: "contain",
+  },
+  button: {
+    position: "absolute",
+    bottom: 10,
+    left: 45,
+    backgroundColor: "#03385c",
+    width: 120,
+    height: 120,
+    borderRadius: 100,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
