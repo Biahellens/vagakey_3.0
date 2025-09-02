@@ -17,7 +17,7 @@ export default function App() {
   const screens = [
     <HomeScreen key="home" />,
     <VehicleScreen key="vehicle" />,
-    <RouteScreen key="rota" />,
+    <RouteScreen key="routeVehicle" />,
     <ContactsScreen key="contatos" />
   ];
 

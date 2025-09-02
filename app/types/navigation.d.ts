@@ -4,6 +4,7 @@ export type RootStackParamList = {
   Register: undefined;
   Home: undefined;
   Vehicle: undefined;
+  RouteVehicle: undefined;
   Map: undefined;
   Reservation: undefined;
   Payment: undefined;
