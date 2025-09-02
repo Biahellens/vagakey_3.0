@@ -18,4 +18,4 @@ services:
 volumes:
   db_data:
   node_modules_backend:
-  node_modules_frontend:
+  node_modules_app:

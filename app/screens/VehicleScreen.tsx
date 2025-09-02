@@ -87,7 +87,8 @@ export default function VehicleScreen({ navigation }: Props) {
           style={styles.carImage}
           imageStyle={{ borderRadius: 12 }} // se quiser arredondar a imagem
         >
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RouteVehicle")}
+          >
             <Text style={styles.buttonText}>Selecionar</Text>
           </TouchableOpacity>
         </ImageBackground>

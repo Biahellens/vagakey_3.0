@@ -1,0 +1,19 @@
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+COPY package.json npm-lock.yaml ./
+RUN npm install -g npm
+RUN npm install --frozen-lockfile
+
+RUN mkdir -p uploads
+
+COPY . .
+
+RUN npm install
+RUN rm -rf dist
+RUN npm start
+
+EXPOSE 8081
+
+CMD ["node", "dist/main"]
