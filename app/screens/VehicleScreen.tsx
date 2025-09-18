@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 
@@ -50,10 +57,25 @@ export default function VehicleScreen({ navigation }: Props) {
           ]}
           onPress={() => setSelectedVehicle("carro")}
         >
-          {selectedVehicle === "carro" ? (<Image source={require("../assets/car_icone_white.png")} style={styles.image} />
-          ) : (<Image source={require("../assets/car_icone.png")} style={styles.image} />
-          )}          <Text style={[styles.buttonOutlineText, selectedVehicle === "carro" && styles.selectedText,
-          ]}>Carro</Text>
+          {selectedVehicle === "carro" ? (
+            <Image
+              source={require("../assets/car_icone_white.png")}
+              style={styles.image}
+            />
+          ) : (
+            <Image
+              source={require("../assets/car_icone.png")}
+              style={styles.image}
+            />
+          )}{" "}
+          <Text
+            style={[
+              styles.buttonOutlineText,
+              selectedVehicle === "carro" && styles.selectedText,
+            ]}
+          >
+            Carro
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -63,10 +85,25 @@ export default function VehicleScreen({ navigation }: Props) {
           ]}
           onPress={() => setSelectedVehicle("moto")}
         >
-          {selectedVehicle === "moto" ? (<Image source={require("../assets/moto_icone_white.png")} style={styles.image} />
-          ) : (<Image source={require("../assets/moto_icone.png")} style={styles.image} />
-          )}          <Text style={[styles.buttonOutlineText, selectedVehicle === "moto" && styles.selectedText,
-          ]}>Moto</Text>
+          {selectedVehicle === "moto" ? (
+            <Image
+              source={require("../assets/moto_icone_white.png")}
+              style={styles.image}
+            />
+          ) : (
+            <Image
+              source={require("../assets/moto_icone.png")}
+              style={styles.image}
+            />
+          )}{" "}
+          <Text
+            style={[
+              styles.buttonOutlineText,
+              selectedVehicle === "moto" && styles.selectedText,
+            ]}
+          >
+            Moto
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -76,18 +113,29 @@ export default function VehicleScreen({ navigation }: Props) {
           ]}
           onPress={() => setSelectedVehicle("bike")}
         >
-          <Image source={require("../assets/bicicleta_icone.png")} style={styles.image} />
-          <Text style={[styles.buttonOutlineText, selectedVehicle === "bike" && styles.selectedText,
-          ]}>Bicicleta</Text>
+          <Image
+            source={require("../assets/bicicleta_icone.png")}
+            style={styles.image}
+          />
+          <Text
+            style={[
+              styles.buttonOutlineText,
+              selectedVehicle === "bike" && styles.selectedText,
+            ]}
+          >
+            Bicicleta
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.carSelected}>
         <ImageBackground
           source={require("../assets/car_selected.png")}
           style={styles.carImage}
-          imageStyle={{ borderRadius: 12 }} // se quiser arredondar a imagem
+          imageStyle={{ borderRadius: 12 }}
         >
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RouteVehicle")}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("RouteVehicle")}
           >
             <Text style={styles.buttonText}>Selecionar</Text>
           </TouchableOpacity>
@@ -131,7 +179,7 @@ const styles = StyleSheet.create({
   image: { width: 50, height: 50 },
 
   carSelected: {
-    position: "relative", // garante que o botão fique relativo à imagem
+    position: "relative", // garante que o botão fique relativo à imabecedarium ?';
     alignItems: "center",
     width: "100%",
     height: 200,
@@ -154,7 +202,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   buttonText: {
     color: "#fff",
