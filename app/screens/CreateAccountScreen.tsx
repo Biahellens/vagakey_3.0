@@ -41,6 +41,8 @@ export function CreateAccountScreen({ navigation }: CreateAccountProps) {
     // Confere se o user existe
     if (!data.user) {
       Alert.alert("Erro", "Usuário não foi criado");
+      navigation.navigate("CreateAccountError");
+
       return;
     }
 
@@ -60,11 +62,13 @@ export function CreateAccountScreen({ navigation }: CreateAccountProps) {
 
     if (profileError) {
       Alert.alert("Erro", profileError.message);
+      navigation.navigate("CreateAccountError");
+
       return;
     }
 
     Alert.alert("Sucesso", "Conta criada! Verifique seu e-mail.");
-    navigation.navigate("Login");
+    navigation.navigate("AllRight");
   };
 
   return (
