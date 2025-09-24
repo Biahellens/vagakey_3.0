@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }: Props) {
       <View style={styles.buttonContent}>
         <TouchableOpacity
           style={styles.buttonOutline}
-          onPress={() => navigation.navigate("Vehicle")}
+          onPress={() => navigation.navigate("CreateAccount")}
         >
           <Text style={styles.buttonOutlineText}>Vamos lá</Text>
         </TouchableOpacity>
