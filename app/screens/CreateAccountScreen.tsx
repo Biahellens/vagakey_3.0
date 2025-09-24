@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { supabase } from "@/supabaseClient";
 
 type CreateAccountProps = NativeStackScreenProps<RootStackParamList, "CreateAccount">;
 
@@ -21,6 +22,51 @@ export function CreateAccountScreen({ navigation }: CreateAccountProps) {
     setForm({ ...form, [key]: value });
   };
 
+  const handleSignup = async () => {
+    if (form.password !== form.confirmPassword) {
+      Alert.alert("Erro", "As senhas não coincidem");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password,
+    });
+
+    if (error) {
+      Alert.alert("Erro", error.message);
+      return;
+    }
+
+    // Confere se o user existe
+    if (!data.user) {
+      Alert.alert("Erro", "Usuário não foi criado");
+      return;
+    }
+
+    // Salvar dados extras na tabela 'profiles'
+    const { error: profileError } = await supabase
+      .from("profiles")
+      .insert([
+        {
+          id: data.user.id,
+          full_name: form.fullName,
+          cpf: form.cpf,
+          birth_date: form.birthDate,
+          license_type: form.licenseType,
+          email: form.email,
+        },
+      ]);
+
+    if (profileError) {
+      Alert.alert("Erro", profileError.message);
+      return;
+    }
+
+    Alert.alert("Sucesso", "Conta criada! Verifique seu e-mail.");
+    navigation.navigate("Login");
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
@@ -33,7 +79,7 @@ export function CreateAccountScreen({ navigation }: CreateAccountProps) {
       <TextInput style={styles.input} placeholder="Senha*" value={form.password} onChangeText={v => handleChange("password", v)} secureTextEntry />
       <TextInput style={styles.input} placeholder="Confirmação de Senha*" value={form.confirmPassword} onChangeText={v => handleChange("confirmPassword", v)} secureTextEntry />
 
-      <TouchableOpacity style={styles.button} onPress={() => console.log("Confirmar Cadastro")}>
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Confirmar</Text>
       </TouchableOpacity>
 
