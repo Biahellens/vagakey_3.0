@@ -34,6 +34,8 @@
       },
       "permissions": [
         "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ]
     },
@@ -49,6 +51,19 @@
     "scheme": "vagakeyapp",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "364115f1-960d-4414-a8c6-aa7693c5c070"
+      }
+    },
+    "owner": "biahellens",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/364115f1-960d-4414-a8c6-aa7693c5c070"
+    }
   }
 }

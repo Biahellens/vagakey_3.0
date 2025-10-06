@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
-import MapView, { Marker, Polyline, Polygon } from "react-native-maps";
 import SearchInput from "@/components/SearchInput";
 
 type Props = NativeStackScreenProps<RootStackParamList, "RouteVehicle">;
@@ -65,15 +64,23 @@ export default function RouteScreen({ navigation }: Props) {
     setModel("");
   };
 
+  // 👇 Importa dinamicamente o mapa apenas se não for web
+  let MapView, Marker, Polyline, Polygon;
+  if (Platform.OS !== "web") {
+    const Maps = require("react-native-maps");
+    MapView = Maps.default;
+    Marker = Maps.Marker;
+    Polyline = Maps.Polyline;
+    Polygon = Maps.Polygon;
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Mapa de Estacionamentos
-      </Text>
+      <Text style={styles.title}>Mapa de Estacionamentos</Text>
       <SearchInput />
 
       <View style={styles.cardContainer}>
-        {Platform.OS !== "web" ? (
+        {Platform.OS !== "web" && MapView ? (
           <MapView
             style={styles.map}
             initialRegion={initialRegion}
@@ -103,7 +110,12 @@ export default function RouteScreen({ navigation }: Props) {
             />
           </MapView>
         ) : (
-          <View style={[styles.map, { alignItems: "center", justifyContent: "center" }]}>
+          <View
+            style={[
+              styles.map,
+              { alignItems: "center", justifyContent: "center" },
+            ]}
+          >
             <Text>Mapa não disponível na Web</Text>
           </View>
         )}
@@ -114,15 +126,18 @@ export default function RouteScreen({ navigation }: Props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 40 },
-  title: { fontSize: 24, fontWeight: "400", marginBottom: 20, textAlign: "center" },
-
+  title: {
+    fontSize: 24,
+    fontWeight: "400",
+    marginBottom: 20,
+    textAlign: "center",
+  },
   cardContainer: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
   },
-
   map: {
     width: width * 0.9,
     height: height * 0.6,
@@ -131,5 +146,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#DDD",
   },
-
 });
