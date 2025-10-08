@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -22,15 +22,16 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerStyle: { backgroundColor: '#2B2E4E' },
-          headerTintColor: '#fff',
+          headerTintColor: '#2B2E4E',
           headerTitleAlign: 'center',
-          headerTitle: () => (
-            <Image
-              source={require('./assets/vagakeylogo.png')}
-              style={styles.logo}
-            />
-          ),
+          header: () => (
+            <View style={{ height: 160, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                source={require('./assets/vagakeylogo.png')}
+                style={{ width: 60, height: 60, resizeMode: 'cover' }}
+              />
+            </View>
+          )
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -47,7 +48,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   logo: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
   },
 });
