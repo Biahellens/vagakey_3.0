@@ -15,6 +15,7 @@ import DrawerComponent from './components/Drawer';
 import { RootStackParamList } from './types/navigation';
 import { useEffect } from 'react';
 import { supabase } from './supabaseClient';
+import VehicleRegistrationScreen from './screens/VehicleRegistrationScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
@@ -80,6 +81,7 @@ export default function App() {
         <Stack.Screen name="AllRight" component={AllRightScreen} />
         <Stack.Screen name="CreateAccountError" component={CreateAccountErrorScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen name="VehicleRegistration" component={VehicleRegistrationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
