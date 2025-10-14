@@ -13,6 +13,7 @@ import { LoginScreen } from './screens/LoginScreen';
 import { CreateAccountScreen } from './screens/CreateAccountScreen';
 import { AllRightScreen, CreateAccountErrorScreen } from './screens/FeedbacksScreen';
 import { RootStackParamList } from './types/navigation';
+import MenuScreen from './screens/MenuScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,6 +42,7 @@ export default function App() {
         <Stack.Screen name="RouteVehicle" component={RouteScreen} />
         <Stack.Screen name="AllRight" component={AllRightScreen} />
         <Stack.Screen name="CreateAccountError" component={CreateAccountErrorScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,6 +12,7 @@ export type RootStackParamList = {
   Ticket: undefined;
   Parking: undefined;
   Finish: undefined;
-  AllRight: undefined
-  CreateAccountError: undefined
+  AllRight: undefined;
+  CreateAccountError: undefined;
+  Menu: undefined;
 };

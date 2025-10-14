@@ -4,20 +4,29 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+type Props = NativeStackScreenProps<RootStackParamList, "Menu">;
 
-export default function HomeScreen({ navigation }: Props) {
+export default function MenuScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>Muito obrigada por utilizar o <Text style={styles.title}>VagaKey</Text></Text>
+
       <Image source={require('../assets/Car.png')} style={styles.image} />
-      <Text style={styles.title}><Image source={require('../assets/car_icone.png')} style={styles.logo} />VagaKey</Text>
-      <Text style={styles.text}>Revolucionando a maneira de como você estaciona 💪</Text>
+
       <View style={styles.buttonContent}>
         <TouchableOpacity
-          style={styles.buttonOutline}
-          onPress={() => navigation.navigate("Menu")}
+          style={[styles.buttonOutline, { backgroundColor: "#022743", marginTop: 20 }]}
+          onPress={() => navigation.navigate("CreateAccount")}
         >
-          <Text style={styles.buttonOutlineText}>Vamos lá</Text>
+          <Text style={styles.buttonOutlineText}>Nova reserva</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContent}>
+        <TouchableOpacity
+          style={[styles.buttonOutline, { backgroundColor: "#6691FE", marginTop: -40 }]}
+          onPress={() => navigation.navigate("CreateAccount")}
+        >
+          <Text style={styles.buttonOutlineText}>Falar com Viky</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -29,9 +38,10 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, marginTop: 80, fontWeight: "600" },
   text: { fontSize: 33, marginTop: 20, fontWeight: "400" },
   image: {
-    width: 412,
-    height: 200,
-    left: -80
+    width: 316,
+    height: 158,
+    left: -80,
+    margin: 60
   },
   logo: {
     width: 36,
@@ -39,7 +49,7 @@ const styles = StyleSheet.create({
     top: 6,
     marginRight: 10
   },
-  buttonOutline: { width: 184, height: 74, padding: 24, borderRadius: 20, alignItems: "center", marginTop: 20, backgroundColor: "#022743" },
+  buttonOutline: { width: 184, height: 74, padding: 24, borderRadius: 20, alignItems: "center", },
   buttonOutlineText: { color: "#ffffff", fontSize: 20, fontWeight: "400" },
   buttonContent: {
     width: "100%",
