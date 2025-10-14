@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Image, View, Linking } from 'react-native';
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackHeaderProps } from '@react-navigation/native-stack';
 
 // Telas
@@ -13,8 +13,11 @@ import { AllRightScreen, CreateAccountErrorScreen } from './screens/FeedbacksScr
 import MenuScreen from './screens/MenuScreen';
 import DrawerComponent from './components/Drawer';
 import { RootStackParamList } from './types/navigation';
+import { useEffect } from 'react';
+import { supabase } from './supabaseClient';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 const screensWithCustomHeader = ['Menu'];
 
 const CustomHeader = (props: NativeStackHeaderProps) => (
@@ -37,6 +40,26 @@ const Header = (props: NativeStackHeaderProps) => (
 );
 
 export default function App() {
+
+  useEffect(() => {
+    const handleDeepLink = async (event: { url: string }) => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session && navigationRef.isReady()) {
+        navigationRef.navigate('Vehicle');
+      }
+    };
+
+    const subscription = Linking.addEventListener('url', handleDeepLink);
+
+    (async () => {
+      const initialUrl = await Linking.getInitialURL();
+      if (initialUrl) await handleDeepLink({ url: initialUrl });
+    })();
+
+    return () => subscription.remove();
+  }, []);
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator

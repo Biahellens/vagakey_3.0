@@ -24,7 +24,7 @@ export default function MenuScreen({ navigation }: Props) {
       <View style={styles.buttonContent}>
         <TouchableOpacity
           style={[styles.buttonOutline, { backgroundColor: "#6691FE", marginTop: -40 }]}
-          onPress={() => navigation.navigate("Menu")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.buttonOutlineText}>Falar com Viky</Text>
         </TouchableOpacity>
