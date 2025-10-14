@@ -19,7 +19,7 @@ export function LoginScreen({ navigation }: LoginProps) {
       Alert.alert('Erro', error.message);
     } else {
       Alert.alert('Sucesso', 'Login realizado!');
-      navigation.navigate('Home');
+      navigation.navigate('Vehicle');
     }
   };
 

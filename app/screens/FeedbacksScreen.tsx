@@ -38,7 +38,7 @@ export function AllRightScreen({ navigation }: Props2) {
       <View style={styles.buttonContent}>
         <TouchableOpacity
           style={[styles.buttonOutline, { backgroundColor: "#1B575B" }]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Vehicle")}
         >
           <Text style={[styles.buttonOutlineText]}>
             Vamos lá

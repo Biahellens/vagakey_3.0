@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Dimensions,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
@@ -120,6 +121,9 @@ export default function RouteScreen({ navigation }: Props) {
           </View>
         )}
       </View>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Vehicle")}>
+        <Text style={styles.buttonText}>Burcar na Região</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -140,10 +144,12 @@ const styles = StyleSheet.create({
   },
   map: {
     width: width * 0.9,
-    height: height * 0.6,
+    height: height * 0.4,
     borderRadius: 10,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "#DDD",
   },
+  button: { width: "100%", height: 60, backgroundColor: "#022743", borderRadius: 20, justifyContent: "center", alignItems: "center", marginTop: 20 },
+  buttonText: { color: "#fff", fontSize: 18, fontWeight: "500" },
 });
