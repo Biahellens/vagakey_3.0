@@ -16,7 +16,7 @@ export default function MenuScreen({ navigation }: Props) {
       <View style={styles.buttonContent}>
         <TouchableOpacity
           style={[styles.buttonOutline, { backgroundColor: "#022743", marginTop: 20 }]}
-          onPress={() => navigation.navigate("CreateAccount")}
+          onPress={() => navigation.navigate("Vehicle")}
         >
           <Text style={styles.buttonOutlineText}>Nova reserva</Text>
         </TouchableOpacity>
@@ -24,7 +24,7 @@ export default function MenuScreen({ navigation }: Props) {
       <View style={styles.buttonContent}>
         <TouchableOpacity
           style={[styles.buttonOutline, { backgroundColor: "#6691FE", marginTop: -40 }]}
-          onPress={() => navigation.navigate("CreateAccount")}
+          onPress={() => navigation.navigate("Menu")}
         >
           <Text style={styles.buttonOutlineText}>Falar com Viky</Text>
         </TouchableOpacity>

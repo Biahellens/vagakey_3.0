@@ -15,4 +15,5 @@ export type RootStackParamList = {
   AllRight: undefined;
   CreateAccountError: undefined;
   Menu: undefined;
+  Drawer: undefined
 };
