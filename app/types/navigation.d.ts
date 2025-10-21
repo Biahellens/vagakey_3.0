@@ -16,5 +16,6 @@ export type RootStackParamList = {
   CreateAccountError: undefined;
   Menu: undefined;
   Drawer: undefined;
-  VehicleRegistration: undefined
+  VehicleRegistration: undefined;
+  PaymentSetup: undefined
 };

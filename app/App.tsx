@@ -16,6 +16,7 @@ import { RootStackParamList } from './types/navigation';
 import { useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import VehicleRegistrationScreen from './screens/VehicleRegistrationScreen';
+import PaymentSetupScreen from './screens/PaymentSetupScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
@@ -82,6 +83,7 @@ export default function App() {
         <Stack.Screen name="CreateAccountError" component={CreateAccountErrorScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="VehicleRegistration" component={VehicleRegistrationScreen} />
+        <Stack.Screen name="PaymentSetup" component={PaymentSetupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

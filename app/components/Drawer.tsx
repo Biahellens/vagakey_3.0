@@ -51,7 +51,7 @@ export default function DrawerComponent() {
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
-              navigation.navigate('Menu');
+              navigation.navigate('PaymentSetup');
               toggleMenu();
             }}
           >
