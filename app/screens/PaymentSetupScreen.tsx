@@ -113,6 +113,8 @@ export default function PaymentSetupScreen({ navigation }: Props) {
         onCardChange={(card) => setCardDetails(card)}
       />
 
+      <Text style={styles.linkText}>Suas informações estão protegidas com criptografia de ponta.</Text>
+
       <View style={styles.button}>
         {loading ? (
           <ActivityIndicator />
@@ -132,4 +134,6 @@ const styles = StyleSheet.create({
   input: { width: "100%", height: 50, borderWidth: 1, borderColor: "#ccc", borderRadius: 10, paddingHorizontal: 10, marginTop: 12 },
   button: { width: "100%", height: 60, backgroundColor: "#022743", borderRadius: 20, justifyContent: "center", alignItems: "center", marginTop: 20 },
   buttonText: { color: "#fff", fontSize: 18, fontWeight: "500" },
+  linkText: { color: "#0054B0", marginTop: 15, marginBottom: 15, fontSize: 14, textAlign: "center" },
+
 });
