@@ -17,5 +17,6 @@ export type RootStackParamList = {
   Menu: undefined;
   Drawer: undefined;
   VehicleRegistration: undefined;
-  PaymentSetup: undefined
+  PaymentSetup: undefined;
+  RechargeTicket: undefined
 };

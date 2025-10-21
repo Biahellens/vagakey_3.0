@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import VehicleRegistrationScreen from './screens/VehicleRegistrationScreen';
 import PaymentSetupScreen from './screens/PaymentSetupScreen';
+import RechargeScreen from './screens/RechargeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
@@ -84,6 +85,8 @@ export default function App() {
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="VehicleRegistration" component={VehicleRegistrationScreen} />
         <Stack.Screen name="PaymentSetup" component={PaymentSetupScreen} />
+        <Stack.Screen name="RechargeTicket" component={RechargeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
