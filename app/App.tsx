@@ -18,6 +18,7 @@ import { supabase } from './supabaseClient';
 import VehicleRegistrationScreen from './screens/VehicleRegistrationScreen';
 import PaymentSetupScreen from './screens/PaymentSetupScreen';
 import RechargeScreen from './screens/RechargeScreen';
+import ChatViky from './screens/ChatViky';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
@@ -86,6 +87,7 @@ export default function App() {
         <Stack.Screen name="VehicleRegistration" component={VehicleRegistrationScreen} />
         <Stack.Screen name="PaymentSetup" component={PaymentSetupScreen} />
         <Stack.Screen name="RechargeTicket" component={RechargeScreen} />
+        <Stack.Screen name="ChatViky" component={ChatViky} />
 
       </Stack.Navigator>
     </NavigationContainer>

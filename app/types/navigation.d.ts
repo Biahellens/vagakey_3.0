@@ -18,5 +18,6 @@ export type RootStackParamList = {
   Drawer: undefined;
   VehicleRegistration: undefined;
   PaymentSetup: undefined;
-  RechargeTicket: undefined
+  RechargeTicket: undefined;
+  ChatViky: undefined
 };

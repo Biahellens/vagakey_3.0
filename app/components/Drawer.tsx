@@ -80,11 +80,11 @@ export default function DrawerComponent() {
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
-              navigation.navigate('Menu');
+              navigation.navigate('ChatViky');
               toggleMenu();
             }}
           >
-            <Text style={styles.menuText}>Logout</Text>
+            <Text style={styles.menuText}>Vicky</Text>
           </TouchableOpacity>
         </Animated.View>
       )}
